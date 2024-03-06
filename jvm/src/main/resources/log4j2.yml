@@ -1,0 +1,37 @@
+Configutation:
+  name: Default
+  Properties:
+    Property:
+      name: log-path
+      value: "logs"
+  Appenders:
+    Console:
+      name: ConsoleAppender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%highlight{%d{HH:mm:ss} | %c:%line |} %style{%msg%n%throwable}{white}"
+    File:
+      name: FileAppender
+      fileName: ${log-path}/logfile.log
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss} %c - %msg%n"
+  Loggers:
+      Root:
+        level: debug
+        AppenderRef:
+          - ref: ConsoleAppender
+      Logger:
+        - name: com.harana.modules.okhttp
+          level: error
+        - name: io.netty
+          level: error
+        - name: io.vertx
+          level: info
+        - name: org.redisson
+          level: warn
+        - name: org.mongodb
+          level: warn
+        - name: skuber.api
+          level: warn
+        - name: org.apache.commons.vfs2
+          level: error

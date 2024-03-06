@@ -1,0 +1,106 @@
+title: Project One
+description: Sample project to test the deployment functionality.
+author:
+  name: Michael Thomson
+  email: michaelthomson@nbnco.com.au
+
+parameters:
+  - name: glue_db_name
+    value: assn_${env}_telemetry
+  - name: glue_table_name
+    value: cuperf_line_list
+  - name: home_path
+    value: s3://assn-csa-${env}-telemetry-data-lake/PROD/RAW/CuperfLineList
+  - name: headers_size
+    value: 14
+
+repositories:
+  - name: project_one
+    git:
+      url: https://git.nbnco.net.au/analytics/one.git
+      username: michaelthomson
+      password: password
+      branch: master
+      tag: 0.4
+
+containers:
+  - name: database
+    docker:
+      image: mysql:mysql
+    command: [echo, "${parameters.map}"]
+    parameters:
+      - name: glue_db_name
+        default: 4g
+
+  - name: webapp
+    scala:
+      repository: project_one
+      path: projects/one
+      sbt:
+        file: build.sbt
+        memory: 4g
+    ports:
+      - name: webapp
+        internal: 5000
+        external: 5000
+
+  - name: webapp2
+    buildpack:
+      repository: project_one
+      path: projects/one
+    expose:
+      port: 5000
+
+  - name: monitoring
+    docker:
+      repository: project_one
+      path: projects/one
+    dependencies:
+      - database
+      - webapp
+    strategy: recreate
+    expose:
+      port: 5000
+
+pipelines:
+  - name: Deploy
+    start:
+      action: webapp
+      triggers:
+        - name: wait-for-sns
+            sns:
+              topic: topic-arn
+              port: 9200
+              url: http;//myfakeure
+        - name: slack
+            slack:
+              channel: topic-arn
+    actions:
+      - name: webapp
+        parameters:
+          - name: message
+            value: "hi"
+        container:
+          name: webapp
+          version: 6
+          resources:
+            cpu: 4
+            memory: 4g
+        dependencies: ["database", "monitoring"]
+
+daemons:
+  - name: Deploy
+    replicas: 4
+    containers:
+      - name: webapp
+        version: 6
+    strategy:
+      canary:
+        intial: 4
+
+notifications:
+  - name: slack
+    slack:
+      channel: project-one-{{env}}
+      events:
+        - publish

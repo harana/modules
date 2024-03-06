@@ -1,0 +1,12 @@
+{
+  "name": "id-jwt",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

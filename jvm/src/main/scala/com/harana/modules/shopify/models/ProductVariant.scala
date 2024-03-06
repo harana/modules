@@ -1,0 +1,23 @@
+package com.harana.modules.shopify.models
+
+case class ProductVariant(id: Long,
+                          productId: Long,
+                          title: String,
+                          price: BigDecimal,
+                          compareAtPrice: Option[BigDecimal],
+                          sku: Option[String],
+                          barcode: Option[String],
+                          position: Int,
+                          grams: Long,
+                          inventoryQuantity: Long,
+                          imageId: Option[Long],
+                          inventoryPolicy: Option[String],
+                          inventoryManagement: Option[String],
+                          option1: Option[String],
+                          option2: Option[String],
+                          option3: Option[String],
+                          fulfillmentService: Option[String],
+                          requiresShipping: Boolean,
+                          taxable: Boolean,
+                          inventoryItemId: Long,
+                          available: Option[Long])
