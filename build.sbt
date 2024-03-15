@@ -1,17 +1,14 @@
 import sbt._
 import com.harana.sbt.common._
 
-val modules = haranaCrossProject("modules").in(file("."))
+val modules = haranaProject("modules").in(file("."))
   .settings(
-    libraryDependencies ++=
-      Library.circe.value
-  )
-  .jvmSettings(
     unmanagedBase := baseDirectory.value / "lib",
     libraryDependencies ++=
       Library.airbyte.value ++
       Library.alluxio.value ++
       Library.awsS3v2.value ++
+      Library.circe.value ++
       Library.dockerJava.value ++
       Library.googleServiceApi.value ++
       Library.jackson.value ++
