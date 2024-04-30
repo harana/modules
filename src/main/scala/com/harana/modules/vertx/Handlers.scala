@@ -9,6 +9,7 @@ import io.vertx.ext.web.handler.sockjs.{SockJSBridgeOptions, SockJSHandler}
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine
 import org.jose4j.jwk.{JsonWebKey, JsonWebKeySet}
 import org.pac4j.core.config.Config
+import org.pac4j.core.context.CallContext
 import org.pac4j.core.context.session.SessionStore
 import org.pac4j.core.exception.http.HttpAction
 import org.pac4j.core.util.Pac4jConstants
@@ -42,7 +43,7 @@ object Handlers {
       val context = new VertxWebContext(rc, sessionStore)
       try {
         val client = config.getClients.findClient(context.getRequestParameter(Pac4jConstants.DEFAULT_CLIENT_NAME_PARAMETER).get)
-        val action = client.get.getRedirectionAction(context, sessionStore)
+        val action = client.get.getRedirectionAction(new CallContext(context, sessionStore))
         val adapter = config.getHttpActionAdapter
         adapter.adapt(action.get, context)
       } catch {

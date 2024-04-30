@@ -8,7 +8,7 @@ import scala.jdk.CollectionConverters._
 
 class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
 
-  override def getPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String): AnyRef = {
+  override def getPossibleProperty(context: OgnlContext, target: scala.Any, name: String): AnyRef = {
     if (isCaseClass(target)) {
       getCaseClassFieldValueByName(target, name) match {
         case Some(x) => return x.asInstanceOf[AnyRef]
@@ -49,17 +49,9 @@ class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
     symbol.isCaseClass
   }
 
-  override def setPossibleProperty(context: util.Map[_, _], target: scala.Any, name: String, value: scala.Any): AnyRef = super.setPossibleProperty(context, target, name, value)
+  override def setPossibleProperty(context: OgnlContext, target: scala.Any, name: String, value: scala.Any): AnyRef = super.setPossibleProperty(context, target, name, value)
 
-  override def hasGetProperty(context: OgnlContext, target: scala.Any, oname: scala.Any): Boolean = super.hasGetProperty(context, target, oname)
-
-  override def hasGetProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any): Boolean = super.hasGetProperty(context, target, oname)
-
-  override def hasSetProperty(context: OgnlContext, target: scala.Any, oname: scala.Any): Boolean = super.hasSetProperty(context, target, oname)
-
-  override def hasSetProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any): Boolean = super.hasSetProperty(context, target, oname)
-
-  override def getProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any): AnyRef = {
+  override def getProperty(context: OgnlContext, target: scala.Any, oname: scala.Any): AnyRef = {
     val result = super.getProperty(context, target, oname)
     result match {
       case c: List[_] => c.asJava
@@ -69,7 +61,7 @@ class OgnlObjectPropertyAccessor extends ObjectPropertyAccessor {
     }
   }
 
-  override def setProperty(context: util.Map[_, _], target: scala.Any, oname: scala.Any, value: scala.Any): Unit = super.setProperty(context, target, oname, value)
+  override def setProperty(context: OgnlContext, target: scala.Any, oname: scala.Any, value: scala.Any): Unit = super.setProperty(context, target, oname, value)
 
   override def getPropertyClass(context: OgnlContext, target: scala.Any, index: scala.Any): Class[_] = super.getPropertyClass(context, target, index)
 

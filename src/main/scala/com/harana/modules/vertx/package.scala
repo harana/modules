@@ -13,6 +13,7 @@ import io.vertx.core.{AsyncResult, Handler, MultiMap, Promise, Vertx => VX}
 import io.vertx.ext.reactivestreams.ReactiveWriteStream
 import io.vertx.ext.web.templ.handlebars.HandlebarsTemplateEngine
 import io.vertx.ext.web.{Router, RoutingContext}
+import org.apache.commons.io.FilenameUtils
 import org.apache.logging.log4j.LogManager
 import org.pac4j.core.config.{Config => Pac4jConfig}
 import org.pac4j.core.context.session.SessionStore
@@ -143,6 +144,9 @@ package object vertx {
   def sendFile(file: File, vx: VX, rc: RoutingContext) = {
     val r = rc.response()
     r.putHeader("Content-Disposition", s"attachment; filename=${file.getName};")
+    val extension = FilenameUtils.getExtension(file.getName)
+    if (MimeTypes.all.contains(extension))
+      r.putHeader("Content-Type", MimeTypes.all(extension))
     r.setChunked(true)
     r.putHeader(HttpHeaders.CONTENT_LENGTH, file.length().toString)
     val rs = new InputStreamReadStream(new FileInputStream(file), vx)

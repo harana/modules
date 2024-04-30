@@ -111,7 +111,6 @@ case class LiveFacebook(config: Config, logger: Logger, micrometer: Micrometer) 
           if (spendCap.nonEmpty) campaign.setSpendCap(spendCap.get)
           if (status.nonEmpty) campaign.setStatus(status.get)
           if (topLineId.nonEmpty) campaign.setToplineId(topLineId.get)
-          campaign.setUpstreamEvents(upstreamEvents.asJava)
           campaign.execute()
         }
       } yield campaign
