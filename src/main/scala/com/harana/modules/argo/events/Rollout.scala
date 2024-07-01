@@ -2,7 +2,7 @@ package com.harana.modules.argo.events
 
 import com.harana.modules.argo._
 import play.api.libs.json.{Format, Json}
-import skuber.apiextensions.CustomResourceDefinition
+import skuber.apiextensions.v1.CustomResourceDefinition
 import skuber.{CustomResource, ListResource, ResourceDefinition}
 
 object Rollout {

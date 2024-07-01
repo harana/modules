@@ -32,6 +32,7 @@ val modules = haranaProject("modules").in(file("."))
       Library.chargebee.value :+
       Library.chimney.value :+
       Library.commonsEmail.value :+
+      Library.commonsIo.value :+
       Library.deepstream.value :+
       Library.facebook.value :+
       Library.kryo.value :+
@@ -65,7 +66,6 @@ val modules = haranaProject("modules").in(file("."))
       Library.youiClient.value :+
       Library.zendeskClient.value :+
       Library.zip4j.value :+
-      Library.zstd.value :+
       Library.ztZip.value :+
       "com.harana" %%% "modules-core" % "1.0.1" :+
       "com.harana" %%% "sdk" % "1.0.1"

@@ -349,7 +349,7 @@ case class LiveSlack(config: Config, logger: Logger, micrometer: Micrometer) ext
                          name: String): IO[Either[SlackError, Throwable], Unit] =
     client.createConversation(
       ConversationCreateParams.builder()
-        .setIsPrivate(isPrivate)
+        .setPrivate(isPrivate)
         .setName(name)
         .build()
     ).unit

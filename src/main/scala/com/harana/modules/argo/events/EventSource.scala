@@ -3,7 +3,7 @@ package com.harana.modules.argo.events
 import com.harana.modules.argo._
 import io.circe.generic.JsonCodec
 import play.api.libs.json.{Format, Json}
-import skuber.apiextensions.CustomResourceDefinition
+import skuber.apiextensions.v1.CustomResourceDefinition
 import skuber.{CustomResource, ListResource, ResourceDefinition}
 
 object EventSource {

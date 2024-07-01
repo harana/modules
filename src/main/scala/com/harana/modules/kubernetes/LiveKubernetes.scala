@@ -1,9 +1,5 @@
 package com.harana.modules.kubernetes
 
-import akka.actor.ActorSystem
-import akka.stream.Materializer
-import akka.stream.scaladsl.{Sink, Source}
-import akka.util.ByteString
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.harana.modules.core.app.App.runEffect
@@ -11,11 +7,14 @@ import com.harana.modules.core.config.Config
 import com.harana.modules.core.logger.Logger
 import com.harana.modules.core.micrometer.Micrometer
 import com.harana.modules.kubernetes.LiveKubernetes._
+import org.apache.pekko.actor.ActorSystem
+import org.apache.pekko.stream.scaladsl.{Sink, Source}
+import org.apache.pekko.util.ByteString
 import play.api.libs.json.{Format, Json, Writes}
 import skuber.api.Configuration
 import skuber.api.client.{KubernetesClient, LoggingContext, RequestLoggingContext, WatchEvent}
 import skuber.api.patch.Patch
-import skuber.apiextensions.CustomResourceDefinition
+import skuber.apiextensions.v1.CustomResourceDefinition
 import skuber.json.format.namespaceFormat
 import skuber.{K8SException, k8sInit, _}
 import zio.interop.reactivestreams.streamToPublisher

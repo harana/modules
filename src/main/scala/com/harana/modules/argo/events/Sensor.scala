@@ -4,7 +4,7 @@ import com.harana.modules.argo._
 import com.harana.modules.argo.events.Trigger.{HttpTrigger, K8STrigger, SlackTrigger}
 import com.harana.modules.argo.workflows.Workflow
 import play.api.libs.json.{Format, Json}
-import skuber.apiextensions.CustomResourceDefinition
+import skuber.apiextensions.v1.CustomResourceDefinition
 import skuber.{CustomResource, ListResource, ResourceDefinition}
 
 object Sensor {

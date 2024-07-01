@@ -1,6 +1,7 @@
 package com.harana.modules
 
 import play.api.libs.json.{Format, Json}
+import skuber.json.format._
 import skuber.Security.{SELinuxOptions, Sysctl}
 import skuber.{LocalObjectReference, PodSecurityContext}
 
@@ -39,7 +40,6 @@ package object argo {
   implicit lazy val podAffinityFmt: Format[PodAffinity] = Json.format[PodAffinity]
   implicit lazy val podAffinityTermFmt: Format[PodAffinityTerm] = Json.format[PodAffinityTerm]
   implicit lazy val podAntiAffinityFmt: Format[PodAntiAffinity] = Json.format[PodAntiAffinity]
-  implicit lazy val podSecurityContextFmt: Format[PodSecurityContext] = Json.format[PodSecurityContext]
   implicit lazy val preferredSchedulingTermFmt: Format[PreferredSchedulingTerm] = Json.format[PreferredSchedulingTerm]
   implicit lazy val rateLimitFmt: Format[RateLimit] = Json.format[RateLimit]
   implicit lazy val requestsFmt: Format[Requests] = Json.format[Requests]
