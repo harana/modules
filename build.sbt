@@ -67,6 +67,6 @@ val modules = haranaProject("modules").in(file("."))
       Library.zip4j.value :+
       Library.zstd.value :+
       Library.ztZip.value :+
-      "com.harana" %%% "modules-core" % "1.0.0" :+
-      "com.harana" %%% "sdk" % "1.0.0"
+      "com.harana" %%% "modules-core" % "1.0.1" :+
+      "com.harana" %%% "sdk" % "1.0.1"
   )

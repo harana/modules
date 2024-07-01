@@ -1,5 +1,6 @@
 package com.harana.modules.kubernetes_s3
 
+import com.harana.web.modules.crud.
 import com.harana.modules.core.config.Config
 import com.harana.modules.core.logger.Logger
 import com.harana.modules.core.micrometer.Micrometer
