@@ -46,6 +46,7 @@ val modules = haranaProject("modules").in(file("."))
       Library.kubernetesClient.value :+
       Library.meilisearch.value :+
       Library.mixpanel.value :+
+      Library.opencsv.value :+
       Library.ognl.value :+
       Library.ohc.value :+
       Library.playJsonExtensions.value :+
