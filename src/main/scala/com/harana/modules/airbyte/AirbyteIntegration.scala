@@ -25,7 +25,7 @@ sealed abstract class AirbyteSyncMode(val value: String) extends StringEnumEntry
 object AirbyteSyncMode extends StringEnum[AirbyteSyncMode] with StringCirceEnum[AirbyteSyncMode] {
   case object Append extends AirbyteSyncMode("append")
   case object AppendDeduplicate extends AirbyteSyncMode("append_dedup")
-  case object Overwrite extends AirbyteSyncMode("ovewrite")
+  case object Overwrite extends AirbyteSyncMode("overwrite")
   val values = findValues
 }
 

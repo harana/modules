@@ -32,7 +32,7 @@ import org.pac4j.vertx.context.session.VertxSessionStore
 import org.pac4j.vertx.handler.impl._
 import org.pac4j.vertx.http.VertxHttpActionAdapter
 import org.pac4j.vertx.{VertxProfileManager, VertxWebContext}
-import zio.{Runtime, Task, UIO, Unsafe, ZIO, ZLayer}
+import zio.{Task, UIO, ZIO, ZLayer}
 
 import java.io.File
 import java.net.URI
