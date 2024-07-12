@@ -45,9 +45,8 @@ package object vertx {
     runEffect(
       for {
         sample        <- micrometer.startTimer
-        _             <- logger.info("--------------------------------------------------------------------------")
         _             <- logger.info(s"${rc.request().method().name()}: ${rc.request().uri()}")
-        _             <- logger.info(rc.request().headers().asScala.map { e => s"${e.getKey} - ${e.getValue}"}.mkString("\n\t\t"))
+        _             <- logger.debug(rc.request().headers().asScala.map { e => s"${e.getKey} - ${e.getValue}"}.mkString("\n\t\t"))
         handler       <- handler match {
                           case RouteHandler.Standard(handler) =>
                             handler(rc)
