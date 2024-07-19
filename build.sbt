@@ -68,5 +68,5 @@ val modules = haranaProject("modules").in(file("."))
       Library.zendeskClient.value :+
       Library.zip4j.value :+
       Library.ztZip.value :+
-      "com.harana" %%% "modules-core" % "1.0.3-dirty-SNAPSHOT"
+      "com.harana" %%% "modules-core" % "1.0.4-1-70f3e10-dirty-SNAPSHOT"
   )
